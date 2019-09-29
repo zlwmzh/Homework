@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Time : 2019/9/29 16:13
-# @Author : XXX
+# @Author : Micky
 # @Desc : week1 作业：image crop, color shift, rotation and perspective transform
 # @File : ImageProcessing.py
 # @Software: PyCharm
