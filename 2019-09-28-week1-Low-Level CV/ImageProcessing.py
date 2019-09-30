@@ -94,11 +94,11 @@ def imageCrop(image):
     """
     # 获取图片的高,宽
     h, w, _ = image.shape
-    # 根据高度宽度产生随机区域
-    n_start_h = np.random.randint(0,h)
-    n_start_w = np.random.randint(0,w)
-    n_end_h = np.random.randint(n_start_h,h)
-    n_end_w = np.random.randint(n_start_w,w)
+    # 根据高度宽度产生随机区域，+-20是为了防止产生线条区域
+    n_start_h = np.random.randint(0,h-20)
+    n_start_w = np.random.randint(0,w-20)
+    n_end_h = np.random.randint(n_start_h+20,h)
+    n_end_w = np.random.randint(n_start_w+20,w)
     # print(n_start_h,n_start_w,n_end_h,n_end_w)
     n_img = image[n_start_h:n_end_h,n_start_w:n_end_w]
     return n_img
