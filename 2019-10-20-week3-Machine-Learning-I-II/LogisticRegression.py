@@ -124,7 +124,7 @@ class LogisticRegressionByMicky(object):
         return 1 / (1 + np.e ** (-x))
 
 if __name__ == '__main__':
-    N = 10
+    N = 400
     centers = 2
     data, y = make_blobs(n_samples=N, n_features=2, centers=centers)
     x = np.reshape(data[:, 0],(-1, 1))
