@@ -280,7 +280,7 @@ if __name__ == '__main__':
     # y.shape = -1, 1
 
     # 模型训练  分为BGD、SGD、MBGD 可分别训练观看结果
-    flag = 2
+    flag = 0
     if flag == 0:
         algo = LinearRegressionByMicky(learning_rate=0.1, iterations=100, iterat_type='BGD')
     elif flag == 1:

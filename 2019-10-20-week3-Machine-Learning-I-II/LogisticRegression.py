@@ -7,6 +7,7 @@
 # @Software: PyCharm
 
 from sklearn.datasets import make_blobs
+from sklearn.linear_model import LogisticRegression
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -65,8 +66,6 @@ class LogisticRegressionByMicky(object):
                     delta += err[sample] * self.X[sample][feature]
                 self.coef_[feature] = self.coef_[feature] + self.learning_rate * 1.0 * delta / sample_count
             # acc = self.accuracy(self._internel_predict(self.X, self.coef_), self.y)
-            # 截距项，因为截距项对应的x为1，
-            self.intercept_ = self.intercept_ + self.learning_rate * np.mean(err)
             # 计算损失变换量
             pre_loss = current_loss
             # 计算损失
@@ -90,6 +89,8 @@ class LogisticRegressionByMicky(object):
             # plt.pause(0.4)  # 设置暂停时间，太快图表无法正常显示
             ###########################################
             num_iter += 1
+        print(
+            '自己写的逻辑回归梯度迭代结束，迭代次数为：{}，模型的theta：{}，最终的损失为：{}'.format(num_iter, self.coef_, self.loss))
 
     def accuracy(self, predict, y):
         """
@@ -121,12 +122,13 @@ class LogisticRegressionByMicky(object):
         :param x: x
         :return: sigmoid函数值
         """
-        return 1 / (1 + np.e ** (-x))
+        return 1 / (1 + np.exp(-x))
 
 if __name__ == '__main__':
+
     N = 400
     centers = 2
-    data, y = make_blobs(n_samples=N, n_features=2, centers=centers)
+    data, y = make_blobs(n_samples=N, n_features=2, centers=centers, random_state=214)
     x = np.reshape(data[:, 0],(-1, 1))
     # plt.scatter(x, data[:, 1], c=y)
     # plt.show()
@@ -134,6 +136,11 @@ if __name__ == '__main__':
     print(y[1])
     algo = LogisticRegressionByMicky(iterations=100)
     algo.fit(x, y)
+
+
+    algo2 = LogisticRegression(fit_intercept=False)
+    algo2.fit(x, y)
+    print('sklearn中LogisticRegression训练的theta：{}'.format(algo2.coef_,algo2.intercept_))
     # t_y = np.asarray([0,0,0,1,1,0])
     # t_y2 = np.asarray([0,0,0,1,1,1])
     # print(algo.accuracy(t_y, t_y2))
