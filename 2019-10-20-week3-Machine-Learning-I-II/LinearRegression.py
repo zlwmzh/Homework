@@ -8,7 +8,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-import random
 
 # 解决中文显示问题
 mpl.rcParams['font.sans-serif'] = [u'SimHei']
